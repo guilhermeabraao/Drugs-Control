@@ -1,33 +1,24 @@
 import { api } from "import/api/api"
 import { useContext, useEffect } from "react"
 import DrugCards from "./drugCards";
-import { DrugContext } from "import/contexts/drugContext";
+import { DrugContext, useDrugContext } from "import/contexts/drugContext";
 
 
 export default function DrugsContainer() {
 
-    const { drugs, setDrugs } = useContext(DrugContext);
+    const { loadDrugs, drugs } = useDrugContext();
 
 
     useEffect(() => {
         loadDrugs()
     }, [])
 
-    async function loadDrugs() {
-        try {
-            const { data } = await api.get('/drugs');
-            setDrugs(data.results);
-        } catch (error) {
-            console.log(error.message);
-        }
-
-    }
     return (
 
         <>
             <div className="drugsContainer">
                 <div className="drugCardsDiv">
-                    {drugs.map((drug) => (<DrugCards drug={drug} />))}
+                    {drugs.map((drug) => (<DrugCards drug={drug} key={drug.id} />))}
                 </div>
             </div>
 

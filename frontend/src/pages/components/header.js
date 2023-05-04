@@ -6,11 +6,10 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
-import AddBoxIcon from '@mui/icons-material/AddBox';
-import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import { api } from 'import/api/api';
 import { DrugContext } from 'import/contexts/drugContext';
+import DrugFormModal from './drugFormModal';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -52,12 +51,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
         },
     },
 }));
-
-const buttonStyle = {
-    color: 'black',
-    backgroundColor: 'white',
-    fontWeight: 'bold'
-}
 
 export default function Header() {
 
@@ -105,9 +98,8 @@ export default function Header() {
                 </Search>
                 <Box sx={{ flexGrow: 1 }} />
                 <Stack>
-                    <Button variant="contained" startIcon={<AddBoxIcon />} style={buttonStyle}>
-                        Register
-                    </Button>
+
+                    <DrugFormModal>Register</DrugFormModal>
                 </Stack>
             </Toolbar>
         </AppBar>

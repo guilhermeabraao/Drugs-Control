@@ -1,22 +1,29 @@
 import { useState } from "react"
 import DrugsContainer from "./drugsContainer"
 import Header from "./header"
-import { DrugContext } from "import/contexts/drugContext";
+import DrugProvider, { DrugContext } from "import/contexts/drugContext";
+import FormProvider from "import/contexts/formContext";
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 
 
 
 export default function Main() {
 
-    const [drugs, setDrugs] = useState([]);
+
 
     return (
         <>
-            <DrugContext.Provider value={{ drugs, setDrugs }}>
-                <main className="mainContainer">
-                    <Header />
-                    <DrugsContainer />
-                </main>
-            </DrugContext.Provider>
+            <DrugProvider>
+                <FormProvider>
+                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                        <main className="mainContainer">
+                            <Header />
+                            <DrugsContainer />
+                        </main>
+                    </LocalizationProvider>
+                </FormProvider>
+            </DrugProvider>
 
             <style jsx>{`
         .mainContainer{

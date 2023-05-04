@@ -82,6 +82,7 @@ s3 = session.resource(service_name='s3', endpoint_url=f'https://{ENDPOINT_URL}',
 
 @app.post('/drugs', status_code=status.HTTP_201_CREATED)
 def create_drug(name:Annotated[str, Form()], price:Annotated[float, Form()], expiration_date:Annotated[str, Form()], image:Annotated[UploadFile, File()], response: Response):
+    
     try:
         if not (name and price and expiration_date and image):
             response.status_code=status.HTTP_400_BAD_REQUEST

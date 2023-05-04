@@ -3,12 +3,14 @@ import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import DrugFormModal from './drugFormModal';
 
 export default function DrugCards({ drug }) {
+
+
     return (
-        <Card sx={{ width: 210, cursor: 'pointer', "&:hover": { opacity: 0.9, scale: '1.02' } }} key={drug.id}>
+        <Card sx={{ width: 210, cursor: 'pointer', "&:hover": { scale: '1.02' } }} key={drug.id}>
             <CardMedia
                 sx={{ height: 170 }}
                 image={drug.image}
@@ -26,7 +28,7 @@ export default function DrugCards({ drug }) {
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button size="small">Edit</Button>
+                <DrugFormModal mode={'edit'} drug={drug} >Edit</DrugFormModal>
             </CardActions>
         </Card >
 
