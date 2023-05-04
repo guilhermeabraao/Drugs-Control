@@ -1,7 +1,6 @@
-import { useState } from "react"
 import DrugsContainer from "./drugsContainer"
 import Header from "./header"
-import DrugProvider, { DrugContext } from "import/contexts/drugContext";
+import DrugProvider from "import/contexts/drugContext";
 import FormProvider from "import/contexts/formContext";
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'

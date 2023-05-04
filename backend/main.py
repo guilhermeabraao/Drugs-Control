@@ -115,6 +115,7 @@ def get_drugs(response: Response):
             drug_response = DrugResponse(id=drug.id, name=drug.name, price=drug.price, expiration_date=drug.expiration_date.strftime('%d-%m-%Y'), image=drug.image)
             drug_responses.append(drug_response)
         return DrugSearchResponse(results=drug_responses)
+        
     except ClientError as e:
         response.status_code=status.HTTP_400_BAD_REQUEST
         return {'error': str(e)}

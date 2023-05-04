@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Backdrop, { backdropClasses } from '@mui/material/Backdrop';
+import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
@@ -53,6 +53,7 @@ const steps = ['Drug info', 'Select drug image', 'Finish'];
 export default function DrugFormModal({ mode, drug }) {
   const [open, setOpen] = React.useState(false);
   const [backDrop, setBackDrop] = React.useState(false);
+  const [errorMessage, setErrorMessage] = React.useState('')
   const handleOpen = () => {
     if (mode === 'edit') {
       setDrugForm(drug);
@@ -113,6 +114,7 @@ export default function DrugFormModal({ mode, drug }) {
       handleClose();
       return;
     }
+    setErrorMessage('Please fill in the fields correctly!')
     setFailedValidation(true)
   }
 
@@ -125,6 +127,8 @@ export default function DrugFormModal({ mode, drug }) {
     } catch (error) {
       setBackDrop(false);
       console.log(error.message)
+      setErrorMessage('Drug name registered already!')
+      setFailedValidation(true)
     }
   }
 
@@ -243,9 +247,9 @@ export default function DrugFormModal({ mode, drug }) {
               </React.Fragment>
 
             </Box>
-            {failedValidation && <Snackbar open={failedValidation} autoHideDuration={3000} onClose={() => setFailedValidation(false)} >
-              <Alert onClose={handleClose} severity="error" sx={{ width: '100%', position: 'relative', top: '10vh' }}>
-                Please fill in the fields correctly!
+            {failedValidation && <Snackbar open={failedValidation} autoHideDuration={2000} onClose={() => setFailedValidation(false)} >
+              <Alert onClose={() => setFailedValidation(false)} severity="error" sx={{ width: '100%', position: 'relative', top: '10vh' }}>
+                {errorMessage}
               </Alert>
             </Snackbar>}
             <Backdrop

@@ -1,7 +1,6 @@
-import { api } from "import/api/api"
-import { useContext, useEffect } from "react"
+import { useEffect } from "react"
 import DrugCards from "./drugCards";
-import { DrugContext, useDrugContext } from "import/contexts/drugContext";
+import { useDrugContext } from "import/contexts/drugContext";
 
 
 export default function DrugsContainer() {
@@ -10,7 +9,9 @@ export default function DrugsContainer() {
 
 
     useEffect(() => {
+
         loadDrugs()
+
     }, [])
 
     return (

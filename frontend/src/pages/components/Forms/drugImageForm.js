@@ -1,7 +1,6 @@
 import Button from '@mui/material/Button';
-import { useFormData } from 'import/contexts/formContext';
 import Image from 'next/image';
-import { ChangeEvent, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 
 export default function DrugImageForm({ drugForm, setDrugForm }) {
